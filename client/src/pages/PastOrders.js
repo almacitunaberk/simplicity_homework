@@ -5,7 +5,7 @@ const PastOrders = () => {
 
   useEffect(() => {
     // TODO: Fetch past orders of the current user using the token in the localstorage
-    //        update the order list with the past orders fetched from the backend
+    //        update the order list with the past orders fetched from the backend   
   }, []);
 
   return (

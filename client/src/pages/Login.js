@@ -4,9 +4,10 @@ import { useMutation, gql } from '@apollo/client';
 import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { AUTH_TOKEN } from '../constants';
 
-const LOGIN = gql`
-  mutation login($email: String!, $password: String!) {
+const LOGIN_MUTATION = gql`
+  mutation LoginMutation($email: String!, $password: String!) {
     loginWithEmail(email: $email, password: $password) {
       token
     }
@@ -19,33 +20,21 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const [login, { data, loading, error }] = useMutation(LOGIN);
+  const [login] = useMutation(LOGIN_MUTATION, {
+    variables: {
+      email: email,
+      password: password,
+    },
+    onCompleted: ({ loginWithEmail }) => {
+      console.log(login);
+      localStorage.setItem(AUTH_TOKEN, loginWithEmail.token);
+      navigate('/');
+    },
+  });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    /*
-    fetch('https://simplicityhw.cotunnel.com/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: `
-      mutation {loginWithEmail(email:"${email}", password:"${password}") {token}}
-      `,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data.data.loginWithEmail.token));
-      */
-    await login({ variables: { email: email, password: password } });
-    if (data !== undefined) {
-      console.log('anan');
-      window.localStorage.setItem('token', data.data.loginWithEmail.token);
-    }
-    if (error === undefined) {
-      navigate('/dashboard');
-    } else {
-      console.log(error);
-    }
+    login();
   };
 
   return (
