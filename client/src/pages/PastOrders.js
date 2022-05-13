@@ -1,16 +1,36 @@
 import React from 'react';
+import { useQuery, gql } from '@apollo/client';
+import Order from '../components/Order';
+import { AUTH_TOKEN } from '../constants';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+const PAST_ORDERS_QUERY = gql`
+  query PastOrdersQuery($limit: Int!, $index: Int!) {
+    pastOrders(limit: $limit, index: $index) {
+      uid
+    }
+  }
+`;
 
 const PastOrders = () => {
-  const [orderList, setOrderList] = useState([]);
-
-  useEffect(() => {
-    // TODO: Fetch past orders of the current user using the token in the localstorage
-    //        update the order list with the past orders fetched from the backend   
-  }, []);
-
+  const { data, loading, error } = useQuery(PAST_ORDERS_QUERY, {
+    variables: {
+      limit: 100,
+      index: 1,
+    },
+  });
+  console.log(data);
   return (
     <div>
-      <h1>Past Orders</h1>
+      {data.pastOrders.map((order) => {
+        return (
+          <>
+            {order.uid}
+            <br />
+          </>
+        );
+      })}
     </div>
   );
 };
