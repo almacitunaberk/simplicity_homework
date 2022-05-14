@@ -25,14 +25,16 @@ const PastOrders = () => {
 
   return (
     <section className="relative">
-      <div className="container flex flex-col lg:flex-row flex-wrap items-center gap-12 mt-14 lg:mt-28">
+      <div className="container justify-center flex flex-col lg:flex-row flex-wrap items-center lg:gap-24 sm:gap-12 mt-14 lg:mt-28">
         {loading && `Loading...`}
         {data &&
           data.pastOrders.map((order) => {
             return (
-              <>
-                <Link to={`/pastOrders/${order.uid}`}>{order.orderDate}</Link>
-              </>
+              <Link key={order.uid} to={`/pastOrders/${order.uid}`}>
+                <div className="flex flex-1 flex-col items-center lg:items-start bg-bookmark-purple rounded-md px-3 py-4 text-center text-white mb-6">
+                  {order.orderDate}
+                </div>
+              </Link>
             );
           })}
       </div>

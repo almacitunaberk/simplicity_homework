@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AUTH_TOKEN } from '../constants';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../img/logoipsum-logo-52.svg';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Header = () => {
     <header>
       <nav className="container flex items-center py-4 mt-4 sm:mt-12">
         <section className="py-1">
-          <img src="../img/logo-white.svg" />
+          <img src={Logo} />
         </section>
         <ul className="hidden sm:flex flex-1 justify-end items-center gap-12 text-bookmark-blue uppercase text-xs">
           <li className="cursor-pointer">

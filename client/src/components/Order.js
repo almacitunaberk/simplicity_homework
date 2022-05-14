@@ -19,9 +19,9 @@ const Order = () => {
     },
   });
   return (
-    <div>
+    <div className="text-3xl md:text-4 lg:text-5xl text-center text-bookmark-blue lg:text-left px-3">
       {loading && `Loading...`}
-      {data && data.order.deliveryFee}
+      {data && <div>{data.order.deliveryFee}</div>}
     </div>
   );
 };

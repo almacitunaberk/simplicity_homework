@@ -18,17 +18,19 @@ const Restaurants = () => {
     },
   });
   return (
-    <>
-      {data &&
-        data.restaurants.map((restaurant) => {
-          return (
-            <>
-              {restaurant.name}
-              <br />
-            </>
-          );
-        })}
-    </>
+    <section className="relative">
+      <div className="container justify-center flex flex-col lg:flex-row flex-wrap items-stretch lg:gap-24 sm:gap-12 mt-14 lg:mt-28">
+        {loading && `Loading...`}
+        {data &&
+          data.restaurants.map((restaurant) => {
+            return (
+              <div className="flex flex-1 flex-col items-center justify-center bg-bookmark-purple rounded-md px-3 py-4 text-center text-white mb-6">
+                {restaurant.name}
+              </div>
+            );
+          })}
+      </div>
+    </section>
   );
 };
 
