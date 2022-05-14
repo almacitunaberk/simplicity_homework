@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 const ORDER_QUERY = gql`
   query OrderQuery($orderUid: String!) {
     order(orderUid: $orderUid) {
-      uid
+      deliveryFee
     }
   }
 `;
@@ -13,7 +13,17 @@ const ORDER_QUERY = gql`
 const Order = () => {
   const location = useLocation();
   const orderId = location.pathname.split('/')[2];
-  return <div>Order</div>;
+  const { data, loading, error } = useQuery(ORDER_QUERY, {
+    variables: {
+      orderUid: orderId,
+    },
+  });
+  return (
+    <div>
+      {loading && `Loading...`}
+      {data && data.order.deliveryFee}
+    </div>
+  );
 };
 
 export default Order;

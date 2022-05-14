@@ -7,12 +7,14 @@ import UserInfo from './pages/UserInfo';
 import './App.css';
 import { Routes, Route } from 'react-router';
 import { AUTH_TOKEN } from './constants';
+import Header from './components/Header';
 
 function App() {
   const authToken = localStorage.getItem(AUTH_TOKEN);
   const isAuth = authToken !== null;
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route path="/" element={<Login />}>
           <Route path="/login" element={<Login />} />

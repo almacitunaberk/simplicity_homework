@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div className="Login">
+    <section className="Login">
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -64,7 +64,7 @@ const Login = () => {
           Submit
         </Button>
       </Form>
-    </div>
+    </section>
   );
 };
 
