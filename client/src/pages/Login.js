@@ -17,6 +17,8 @@ const LOGIN_MUTATION = gql`
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailBlurred, setEmailBlurred] = useState(false);
+  const [passwordBlurred, setPasswordBlurred] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,7 +30,7 @@ const Login = () => {
     onCompleted: ({ loginWithEmail }) => {
       console.log(login);
       localStorage.setItem(AUTH_TOKEN, loginWithEmail.token);
-      navigate('/');
+      navigate('/pastOrders');
     },
   });
 
@@ -38,32 +40,59 @@ const Login = () => {
   };
 
   return (
-    <section className="Login">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
+    <section className="form">
+      <form onSubmit={handleSubmit}>
+        <h2 className="form__header">Login</h2>
+        <div className="form__inputbox">
+          <label htmlFor="email" className={`form__label ${emailBlurred && 'filled'}`}>
+            Email Address
+          </label>
+          <input
+            id="email"
+            className="form__email"
+            onBlur={() => {
+              setEmailBlurred(false);
+            }}
             type="email"
             placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            onFocus={(e) => {
+              setEmailBlurred(true);
+            }}
             value={email}
+            autoComplete="off"
+            required
           />
-          <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+        </div>
+        <div className="form__inputbox">
+          <label htmlFor="password" className={`form__label ${passwordBlurred && `filled`}`}>
+            Password
+          </label>
+          <input
+            id="password"
+            className="form__email"
+            onBlur={() => {
+              setPasswordBlurred(false);
+            }}
             type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            onFocus={(e) => {
+              setPasswordBlurred(true);
+            }}
             value={password}
+            autoComplete="off"
+            required
           />
-        </Form.Group>
-        <Button variant="primary" type="submit">
+        </div>
+        <button className="form__button" type="submit">
           Submit
-        </Button>
-      </Form>
+        </button>
+      </form>
     </section>
   );
 };

@@ -1,10 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery, gql } from '@apollo/client';
+import './Restaurants.css';
 
 const RESTAURANTS_QUERY = gql`
   query RestaurantQuery($delivery: Boolean!, $limit: Int!, $index: Int!) {
     restaurants(delivery: $delivery, limit: $limit, index: $index) {
       name
+      open
+      avgScore
+      minOrderAmount
+      uid
+      deliveryFee {
+        amount
+      }
     }
   }
 `;
@@ -18,17 +26,38 @@ const Restaurants = () => {
     },
   });
   return (
-    <section className="relative">
-      <div className="container justify-center flex flex-col lg:flex-row flex-wrap items-stretch lg:gap-24 sm:gap-12 mt-14 lg:mt-28">
-        {loading && `Loading...`}
-        {data &&
-          data.restaurants.map((restaurant) => {
-            return (
-              <div className="flex flex-1 flex-col items-center justify-center bg-bookmark-purple rounded-md px-3 py-4 text-center text-white mb-6">
-                {restaurant.name}
-              </div>
-            );
-          })}
+    <section className="restaurants">
+      <div className="restaurants__container">
+        {loading && <h2>Loading...</h2>}
+        {data && (
+          <>
+            <h2>Restaurants</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Average Score</th>
+                  <th>Delivery Fee</th>
+                  <th>Min. Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.restaurants.map((restaurant) => {
+                  return (
+                    <tr key={restaurant.uid}>
+                      <td>{restaurant.name}</td>
+                      <td>{restaurant.avgScore}</td>
+                      <td>{restaurant.deliveryFee === null ? `0` : restaurant.deliveryFee.amount}</td>
+                      <td>{restaurant.minOrderAmount}</td>
+                      <td>{restaurant.open ? `Open` : `Closed`}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
+        )}
       </div>
     </section>
   );

@@ -1,0 +1,44 @@
+.restaurants__container {
+  margin-top: 6rem;
+  display: block;
+  padding: 0 2rem;
+}
+
+.restaurants__container h2 {
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  font-family: sans-serif;
+}
+
+.restaurants__container table {
+  background: white;
+  width: 100%;
+  border-radius: 2rem;
+  padding: 1.8rem;
+  text-align: center;
+  box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+  transition: all 0.3s ease;
+}
+
+.restaurants__container table:hover {
+  box-shadow: 1rem 2.2rem 2rem rgba(132, 139, 200, 0.18);
+}
+
+.restaurants__container table thead th {
+  font-family: sans-serif;
+  font-size: 24px;
+}
+
+.restaurants__container table tbody tr {
+  cursor: pointer;
+}
+
+.restaurants__container table tbody td {
+  height: 2.8rem;
+  border-bottom: 1px solid rgba(132, 139, 200, 0.18);
+  color: #677483;
+}
+
+.restaurants__container table tbody tr:last-child td {
+  border: none;
+}
