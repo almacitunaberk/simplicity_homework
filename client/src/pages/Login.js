@@ -51,7 +51,9 @@ const Login = () => {
             id="email"
             className="form__email"
             onBlur={() => {
-              setEmailBlurred(false);
+              if (email == '') {
+                setEmailBlurred(false);
+              }
             }}
             type="email"
             placeholder="Enter email"
@@ -74,7 +76,9 @@ const Login = () => {
             id="password"
             className="form__email"
             onBlur={() => {
-              setPasswordBlurred(false);
+              if (password == '') {
+                setPasswordBlurred(false);
+              }
             }}
             type="password"
             placeholder="Enter password"

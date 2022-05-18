@@ -42,3 +42,11 @@
 .restaurants__container table tbody tr:last-child td {
   border: none;
 }
+
+@media screen and (max-width: 768px) {
+  .restaurants__container table thead th {
+    font-size: 0.8rem;
+    text-align: left;
+    padding: 0 16px;
+  }
+}

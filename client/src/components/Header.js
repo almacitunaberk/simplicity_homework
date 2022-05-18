@@ -20,14 +20,14 @@ const Header = () => {
             <i onClick={() => setSidebarOpened(false)} className="fa-solid fa-xmark"></i>
             <div className="navheader__menu-sidebar" id="close-btn">
               <ul className="navheader__options-sidebar">
-                <li className="navheader__option-sidebar">
+                <li onClick={() => setSidebarOpened(false)} className="navheader__option-sidebar">
                   <Link to="/pastOrders">Past Orders</Link>
                 </li>
-                <li className="navheader__option-sidebar">
+                <li onClick={() => setSidebarOpened(false)} className="navheader__option-sidebar">
                   <Link to="/restaurants">Restaurants</Link>
                 </li>
                 {authToken && (
-                  <li className="navheader__option-sidebar">
+                  <li onClick={() => setSidebarOpened(false)} className="navheader__option-sidebar">
                     <Link to="/userInfo">Profile</Link>
                   </li>
                 )}
