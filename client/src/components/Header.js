@@ -17,7 +17,9 @@ const Header = () => {
         </section>
         {sidebarOpened ? (
           <>
-            <i onClick={() => setSidebarOpened(false)} className="fa-solid fa-xmark"></i>
+            <span onClick={() => setSidebarOpened(false)} class="material-symbols-outlined">
+              close
+            </span>
             <div className="navheader__menu-sidebar" id="close-btn">
               <ul className="navheader__options-sidebar">
                 <li onClick={() => setSidebarOpened(false)} className="navheader__option-sidebar">
@@ -46,10 +48,9 @@ const Header = () => {
           </>
         ) : (
           <div onClick={() => setSidebarOpened(true)} className="navheader__menu" id="close-btn">
-            <i className="fa-solid fa-bars"></i>
+            <span class="material-symbols-outlined">menu</span>
           </div>
         )}
-
         <ul className="navheader__options">
           <li className="navheader__option">
             <Link to="/pastOrders">Past Orders</Link>
