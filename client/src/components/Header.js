@@ -52,22 +52,22 @@ const Header = () => {
           </div>
         )}
         <ul className="navheader__options">
-          <li className="navheader__option">
-            <Link to="/pastOrders">Past Orders</Link>
+          <li onClick={() => navigate('/pastOrders')} className="navheader__option">
+            Past Orders
           </li>
-          <li className="navheader__option">
-            <Link to="/restaurants">Restaurants</Link>
+          <li onClick={() => navigate('/restaurants')} className="navheader__option">
+            Restaurants
           </li>
           {authToken && (
-            <li className="navheader__option">
-              <Link to="/userInfo">Profile</Link>
+            <li onClick={() => navigate('/userInfo')} className="navheader__option">
+              Profile
             </li>
           )}
           <button
             type="button"
             className="navheader__button"
             onClick={() => {
-              localStorage.setItem(AUTH_TOKEN, '');
+              localStorage.removeItem(AUTH_TOKEN);
               navigate('/login');
             }}
           >

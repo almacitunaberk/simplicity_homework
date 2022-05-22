@@ -28,13 +28,13 @@ const Login = () => {
       password: password,
     },
     onCompleted: ({ loginWithEmail }) => {
-      console.log(login);
+      console.log(loginWithEmail);
       localStorage.setItem(AUTH_TOKEN, loginWithEmail.token);
       navigate('/pastOrders');
     },
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     login();
   };
