@@ -14,6 +14,8 @@
   background: white;
   width: 100%;
   border-radius: 2rem;
+  position: relative;
+  z-index: -1;
   padding: 1.8rem;
   text-align: center;
   margin-bottom: 2rem;

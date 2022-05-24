@@ -92,6 +92,8 @@
 .orders_table__container table {
   width: 100%;
   padding: 1.8rem;
+  position: relative;
+  z-index: -1;
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
